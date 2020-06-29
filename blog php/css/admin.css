@@ -1,0 +1,26 @@
+body {
+    background: url('../img/fondAdmin.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+p {
+    color: white;
+}
+.blockAdmin {
+    width:50%;
+    margin: 0 auto;
+}
+.input{
+    width: 100%;
+    padding: 8px 12px;
+	background: #FFFFFF;
+    border: none;
+    margin-bottom: 30px;
+}
+@media (max-width: 900px) {
+    .blockAdmin {
+        width:80%;
+    }
+}

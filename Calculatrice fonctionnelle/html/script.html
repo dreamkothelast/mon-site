@@ -1,0 +1,282 @@
+<!Doctype>
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<title>Calculatrice</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+				font-family: 'Roboto', sans-serif;
+			}
+			body {
+				width: 400px;
+				margin: 30px auto;
+			}
+			#calculatrice{
+				width: 400px;
+				margin: 0 auto;
+				padding: 20px;
+				background: #0cc193;
+				border-radius: 3%;
+			}
+			h1{
+				text-align: center;
+				text-transform: uppercase;
+				color: white;
+				margin-bottom: 20px;
+			}
+			h2 {
+				margin: 40px 0 10px 0;
+			}
+			#ecran{
+				padding: 25px 15px;
+				background: #ebebeb;
+				margin-bottom: 20px;
+			}
+			.key{
+				float: left;
+				width:90px;
+				padding: 30px 0;
+				line-height: 30px;
+				text-align: center;
+				background: #eeeeee;
+				margin: 5px;
+				font-size: 30px;
+			}
+			.clearfix{
+				clear: both;
+			}
+			.clavier-left,
+			.clavier-right{
+				float: left;
+			}
+			.clavier-left{
+				width: 300px;
+			}
+			.clavier-right{
+				width: 100px;
+			}
+			.pdf-exo {
+				position: fixed;
+				bottom: 0;
+				right: 10px;
+				background: #31DC93;
+				color: #ffffff;
+				padding: 13px;
+				text-decoration: none;
+				font-weight: bold;
+				transition: 0.3s;
+				border-top-left-radius: 6px;
+				border-top-right-radius: 6px;
+			}
+			.pdf-exo:hover {
+				padding-bottom: 40px;
+				transition: 0.3s;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Ressources -->
+		<a href="calculatrice.pdf" class="pdf-exo" target="_blank">PDF de l'exercice</a>
+
+		<!-- Code pour l'exercice -->
+		<div id="calculatrice">
+			<header>
+				<h1>KAZYO</h1>
+			</header>
+			<section id="ecran">
+				<div class="reset">RESET</div>
+				<h2>0</h2>
+			</section>
+			<section id="clavier">
+				<div class="clavier-left">
+					<div class="key">7</div>
+					<div class="key">8</div>
+					<div class="key">9</div>
+					<div class="key">4</div>
+					<div class="key">5</div>
+					<div class="key">6</div>
+					<div class="key">1</div>
+					<div class="key">2</div>
+					<div class="key">3</div>
+					<div class="key">0</div>
+					<div class="key">.</div>
+					<div class="key">=</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clavier-right">
+					<div class="key">x</div>
+					<div class="key">-</div>
+					<div class="key">+</div>
+					<div class="key">/</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+			</section>
+		</div>
+		<script>
+			let ecran = document.querySelector('#ecran > h2');
+			let keys = document.querySelectorAll('.key');
+			let reset = document.querySelector('.reset');
+			let concatNum = '';
+			let concatNum2 = '';
+			let operator = '';
+			let displayedResult = false;
+			let touches = [
+				{code: 48, value: 0},
+				{code: 49, value: 1},
+				{code: 50, value: 2},
+				{code: 51, value: 3},
+				{code: 52, value: 4},
+				{code: 53, value: 5},
+				{code: 54, value: 6},
+				{code: 55, value: 7},
+				{code: 56, value: 8},
+				{code: 57, value: 9}
+			];
+
+			reset.addEventListener('click', () => {
+				ecran.innerHTML = 0;
+				concatNum = '';
+				concatNum2 = '';
+			});
+
+			document.addEventListener('keydown', (e) => {
+				for(let i = 0; i < touches.length; i++) {
+					if(e.keyCode === touches[i].code) {
+						let intValue = parseInt(touches[i].value);
+
+						if(!isNaN(intValue)) { //si la touche est un chiffre
+							if(displayedResult === true) { //si on a précédement appuyé sur égal
+								concatNum = '';
+								displayedResult = false;
+							}
+							if(operator) {
+								concatNum2 = concatNum2 + touches[i].value;
+								ecran.innerHTML = concatNum2;
+							} else {
+								concatNum = concatNum + touches[i].value;
+								ecran.innerHTML = concatNum;
+							}
+
+						} else if(touches[i].code !== '=') { //si la touche est un opérateur autre que égal
+							if(displayedResult === true) {
+								concatNum = ecran.innerHTML;
+								concatNum2 = '';
+								operator = keys[i].innerHTML;
+								displayedResult = false;
+							} else {
+								if(operator) { //si un opérateur de calcul à été défini
+									console.log(operator);
+									let resultat = getOperator(operator, parseInt(concatNum), parseInt(concatNum2));
+									if(isNaN(resultat)) {
+										ecran.innerHTML = '🤣 tu as entré deux opérateurs de suite petit génie';
+										concatNum = '';
+										concatNum2 = '';
+										operator = '';
+									} else {
+										ecran.innerHTML = resultat;
+										concatNum = resultat;
+										concatNum2 = '';
+										operator = keys[i].innerHTML;
+									}
+								} else { //si aucun operateur n'a été défini
+									operator = keys[i].innerHTML;
+									ecran.innerHTML = ecran.innerHTML;
+								}
+							}
+
+						} else { // si on appuie sur =
+							let resultat = getOperator(operator, parseInt(concatNum), parseInt(concatNum2));
+							if(resultat === undefined) {
+								ecran.innerHTML = '😥 tu n\'as pas entré d\‘opérateur. Essaye encore !';
+							} else {
+								ecran.innerHTML = resultat;
+								concatNum = resultat;
+								concatNum2 = '';
+								operator = '';
+								displayedResult = true;
+							}
+
+						}
+					}
+				}
+			});
+
+
+			for(let i = 0; i < keys.length; i++) {
+				keys[i].addEventListener('click', () => {
+					let intValue = parseInt(keys[i].innerHTML);
+
+					if(!isNaN(intValue)) { //si la touche est un chiffre
+						if(displayedResult === true) { //si on a précédement appuyé sur égal
+							concatNum = '';
+							displayedResult = false;
+						}
+						if(operator) {
+							concatNum2 = concatNum2 + keys[i].innerHTML;
+							ecran.innerHTML = concatNum2;
+						} else {
+							concatNum = concatNum + keys[i].innerHTML;
+							ecran.innerHTML = concatNum;
+						}
+
+					} else if(keys[i].innerHTML !== '=') { //si la touche est un opérateur autre que égal
+						if(displayedResult === true) {
+							concatNum = ecran.innerHTML;
+							concatNum2 = '';
+							operator = keys[i].innerHTML;
+							displayedResult = false;
+						} else {
+							if(operator) { //si un opérateur de calcul à été défini
+								console.log(operator);
+								let resultat = getOperator(operator, parseInt(concatNum), parseInt(concatNum2));
+								if(isNaN(resultat)) {
+									ecran.innerHTML = '🤣 tu as entré deux opérateurs de suite petit génie';
+									concatNum = '';
+									concatNum2 = '';
+									operator = '';
+								} else {
+									ecran.innerHTML = resultat;
+									concatNum = resultat;
+									concatNum2 = '';
+									operator = keys[i].innerHTML;
+								}
+							} else { //si aucun operateur n'a été défini
+								operator = keys[i].innerHTML;
+								ecran.innerHTML = ecran.innerHTML;
+							}
+						}
+
+					} else { // si on appuie sur =
+						let resultat = getOperator(operator, parseInt(concatNum), parseInt(concatNum2));
+						if(resultat === undefined) {
+							ecran.innerHTML = '😥 tu n\'as pas entré d\‘opérateur. Essaye encore !';
+						} else {
+							ecran.innerHTML = resultat;
+							concatNum = resultat;
+							concatNum2 = '';
+							operator = '';
+							displayedResult = true;
+						}
+
+					}
+				});
+			}
+
+			function getOperator(operator, num1, num2) {
+				if(operator === 'x') {
+					return num1 * num2;
+				} else if(operator === '/') {
+					return num1 / num2;
+				} else if(operator === '-') {
+					return num1 - num2;
+				} else if(operator === '+') {
+					return num1 + num2;
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>CV</title>
+<style>
+*{
+    font-family: Avenir, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    text-align: justify;
+    box-sizing: border-box;
+}
+body{
+    background: #ededed;
+}
+p{
+    font-size: 1em;
+    line-height: 1.5em;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+header, footer{
+    width: 100%;
+    padding: 20px 0px;
+    background: url("https://www.pierre-giraud.com/wp-content/uploads/2019/07/cv-cover.jpg") #4f4f4f;
+    box-shadow: 0px 0px 15px #333;
+}
+header{
+    border-bottom: 2px solid #fff;
+    height: 120px;
+}
+header h1{
+    color: white;
+    font-size: 1.5em;
+    width: 90%;
+    margin: 0 auto;
+}
+
+footer{
+    border-top: 2px solid #fff;
+}
+footer p{
+    width: 90%;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+}
+footer a{
+    color: #fff;
+}
+
+section{
+    display: flex; 
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 20px;
+    margin: 20px auto;
+    box-shadow: 0px 0px 10px #bbb;
+    background-color: #fff;
+}
+
+section h2{
+    margin: 20px 0;
+    width: 90%;
+}
+section > div{
+    width: 90%;
+}
+
+.photo{
+    text-align: center;
+}
+.photo img{
+    width: 150px;
+    height: 150px;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 10px #777;
+    border-radius: 50%;
+    margin-top: -80px;
+}
+.prez{
+    border-bottom: 2px dashed #ccc;
+}
+.prez a{
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin: 10px auto 30px auto;
+    color: #fff;
+    background-color: #EA0;
+    box-shadow: 0px 0px 10px #ccc;
+    border-radius: 5px;
+}
+.contact-flex{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+.contact-flex p:first-child{
+    flex: 0 0 40%;
+}
+.contact-flex p:last-child{
+    flex: 0 0 60%;
+}
+.social{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px auto 0px auto;
+}
+.social img{
+    width: 40px;
+    height: 40px;
+}
+
+.exp{
+    display: flex;
+    flex-flow: row wrap;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+}
+.exp-info{
+    display: flex;
+    flex-flow: column wrap;
+}
+.exp-logo{
+    flex: 0 0 25%;
+    max-width: 100px;
+}
+.exp-info{
+    flex: 0 0 70%;
+    margin-left: auto;
+}
+.exp img{
+    width: 100%;
+}
+.exp h3{
+    font-size:  1.2em;
+}
+.exp h4{
+    font-size:  1em;
+    font-weight: normal;
+}
+
+.h3gauche{
+    width: 90%;
+}
+.comp{
+    display:flex;
+    flex-flow: row wrap;
+    margin-bottom: 10px;
+}
+.comp p{
+    flex: 0 0 40%;
+}
+.conteneur-barre{
+    flex: 0 0 60%;
+    border-radius: 5px;
+    background-color: grey;
+    border-bottom: 1px ridge grey;
+}
+.barre{
+    display: block;
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.c85{
+    width: 85%;
+    background-color: #8B8;
+}
+.c90{
+    width: 90%;
+    background-color: #4B8;
+}
+.c95{
+    width: 95%;
+    background-color: #4B8;
+}
+.c100{
+    width: 100%;
+    background-color: #4B8;
+    border-radius: 5px;
+}
+.comp2{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.conteneur-barre2{
+    flex: 0 0 100%;
+    height: 0.5em;
+    margin-bottom: 0.25em;
+    border-radius: 5px;
+    background-color: grey;
+}
+
+.interet{
+    flex: 0 1 50%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.interet img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 15px #555;
+}
+
+@media screen and (min-width: 980px){
+    section{
+        width: 80%;
+        box-shadow: 0px 0px 10px #bbb;
+    }
+    a:hover{
+        color: #EA0;
+    }
+    header h1{
+        width: 80%;
+    }
+    .prez, .contact{
+        flex: 0 0 45%;
+    }
+    .prez{
+        border-bottom: none;
+        border-right: 2px solid #ccc;
+        padding-right: 20px;
+        margin-left: auto;
+    }
+    .contact{
+        padding-left: 20px;
+        margin-right: auto;
+    }
+    .prez a{
+        border: 2px solid transparent;
+    }
+    .prez a:hover{
+        color: #f28835;
+        background-color: #fff;
+        border: 2px solid #f28835;
+        box-shadow: 0px 0px 20px #666;
+    }
+    .exp-logo{
+        flex: 0 0 10%;
+    }
+    .exp-info, .exp-desc{
+        flex: 0 0 85%;
+        margin-left: auto;
+    }
+    .interet{
+        flex: 0 1 25%;
+    }
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<head>
+<title>CV de Amine Djeghali</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="cv.css">
+</head>
+<body>
+<header>
+<h1>CV de Amine Djeghali</h1>
+</header>
+<section>
+<div class="photo">
+<img src="IMG_9917.jpg">
+</div>
+<div class="prez">
+<h2>Qui suis-je ?</h2>
+<p>Diplômé d'un Baccalauréat STI2D, je me tourne ensuite vers le développement WEB et les
+thématiques liées au web comme l'optimisation du référencement .</p>
+<a href="CV%20AMINE%20DJEGHALI.pdf" download> mon CV</a>
+</div>
+<div class="contact">
+<h2>Informations de contact</h2>
+<div class="contact-flex">
+<p>Nom : </p>
+<p>Djeghali Amine</p>
+</div>
+<div class="contact-flex">
+<p>Adresse : </p>
+<p>14 Rue de La République - 93100 Montreuil</p>
+</div>
+<div class="contact-flex">
+<p>Téléphone :</p>
+<p>06 15 39 20 17</p>
+</div>
+<div class="contact-flex">
+<p>Mail :adjeghali@gmail.com </p>
+<p><a href="/cdn-cgi/l/email-protection#06766f6374746328616f746773624663626e63652865696b"><span class="__cf_email__" data-cfemail=adjeghali@gmail.com</span></a></p>
+</div>
+<div class="contact-flex">
+<p>Permis :</p>
+<p>B</p>
+</div>
+
+</div>
+</section>
+<section>
+<h2>Formation</h2>
+<div class="exp">
+
+
+
+<div class="exp-info">
+<h3>Titre de Développeur Intégrateur</h3>
+<h4>Septembre 2019 - Juillet 2021</h4>
+</div>
+<div class="exp-desc">
+<p>Campus Fonderie de l'Image</p>
+</div>
+</div>
+
+<div class="exp-info">
+<h3>Licence LLCE Anglais</h3>
+<h4>Septembre 2017 - Juillet 2018</h4>
+</div>
+<div class="exp-desc">
+<p>Université Paris 13 Villetaneuse</p>
+</div>
+<div class="exp-info">
+<h3>DUT Métier Du Multimédia et de l'Internet</h3>
+<h4>Septembre 2015 - Juillet 2016</h4>
+  <p>Université Paris EST Marne la vallée</p>
+  
+</div>
+<div class="exp-desc">
+<p>Campus Fonderie de l'Image</p>
+</div>
+<section>
+<h2>Expériences</h2>
+<div class="exp">
+
+<div class="exp-info">
+<h3>Soutien scolaire en mathématiques pourParticuliers (niveau collège) </h3>
+<h4>2017-2018</h4>
+</div>
+<div class="exp-desc">
+>
+</div>
+</div>
+<div class="exp">
+
+<div class="exp-info">
+<h3>Carrefour Montreuil</h3>
+<h4>Oct-Déc 2018</h4>
+</div>
+<div class="exp-desc">
+<p>Employé-libre-service Tenue de caisse/ Manutention/Conseil client</p>
+</div>
+</div>
+<div class="exp">
+
+<div class="exp-info">
+<h3>Verger Saint Martin</h3>
+<h4>Janv-Mars 2018</h4>
+</div>
+<div class="exp-desc">
+<p>Employé-libre-service
+  Tenue de caisse/ Manutention/Conseil client’ Paris  </p>
+</div>
+</div>
+</section>
+<section>
+<h2>Compétences</h2>
+<h3 class="h3gauche">Professionnelles</h3>
+<div class="comp">
+<p>HTML / CSS</p>
+<div class="conteneur-barre"><span class="barre c100"></span></div>
+</div>
+<div class="comp">
+<p>PHP / MySQL</p>
+<div class="conteneur-barre"><span class="barre c95"></span></div>
+</div>
+<div class="comp">
+<p>JavaScript</p>
+<div class="conteneur-barre"><span class="barre c90"></span></div>
+</div>
+
+<h3 class="h3gauche">Personnelles</h3>
+<div class="comp2">
+<p>Créativité</p>
+<p>90%</p>
+<div class="conteneur-barre2"><span class="barre c90"></span></div>
+</div>
+<div class="comp2">
+<p>Adaptation</p>
+<p>85%</p>
+<div class="conteneur-barre2"><span class="barre c85"></span></div>
+</div>
+<div class="comp2">
+<p>Sérieux</p>
+<p>95%</p>
+<div class="conteneur-barre2"><span class="barre c95"></span></div>
+</div>
+<div class="comp2">
+<p>Pédagogie</p>
+<p>95%</p>
+<div class="conteneur-barre2"><span class="barre c95"></span></div>
+</div>
+</section>
+<section>
+<h2>Centres d'intérêt</h2>
+<figure class="interet">
+<img src=hhttps://cdn.radiofrance.fr/s3/cruiser-production/2019/09/fe880b8b-0ed4-4436-ad5f-56a1dc42d355/870x489_gettyimages-930207070.webp alt="Sport">
+<figcaption>Sport</figcaption>
+</figure>
+<figure class="interet">
+<img src=http://ekladata.com/jCw_A6Jiz1SIVQblxOqDtsjqkxA.jpg alt="Internet">
+<figcaption>Internet</figcaption>
+</figure>
+<figure class="interet">
+<img src="https://www.pierre-giraud.com/wp-content/uploads/2019/07/gaming.jpg" alt="Gaming">
+<figcaption>Jeux vidéos</figcaption>
+</figure>
+<figure class="interet">
+<img src="https://www.pierre-giraud.com/wp-content/uploads/2019/07/livre.jpg" alt="Littérature">
+<figcaption>Littérature</figcaption>
+</figure>
+</section>
+<footer>
+<p><a href=aminedjeghali.portfoliobox.net>port-folio</a> </p>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+<script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+</body>
+</html>

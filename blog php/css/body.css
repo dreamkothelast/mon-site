@@ -1,0 +1,91 @@
+@font-face {
+	font-family: "PrequelDemo-Regular";
+	src: url('../typo/PrequelDemo-Regular.ttf');
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #DEDCD9;
+}
+.fond {
+    width: 100%;
+}
+.center {
+    text-align: center;
+}
+
+/* Page */
+.titrePage {
+    font-size: 42px;
+    font-family: "PrequelDemo-Regular", sans-serif;
+    padding: 24px 0px;
+}
+
+/* articles */
+.titre {
+    font-size: 24px;
+    font-family: "PrequelDemo-Regular", sans-serif;
+    padding: 24px 0px;
+    color: #6a341a;
+    height: 100px;
+}
+.image {
+    width: 100%;
+    border: 24px solid white;
+}
+.description {
+    
+}
+.categorie {
+    color: #6a341a;
+    cursor: pointer;
+}
+.date {
+    font-size: 12px;
+}
+.auteur {
+    font-size: 24px;
+    background-color: white;
+    margin: 0;
+    width: 100%;
+    font-family: 'Kaushan Script', cursive;
+}
+.auteurBlock {
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    padding-bottom: 30px;
+}
+.scotch {
+    text-align: center;
+    margin-bottom: -45px;
+    z-index: 3;
+    display: block;
+    opacity: .7;
+}
+.dateBlock {
+    margin-bottom: 30px;
+}
+
+/* admin */
+.fondBlanc {
+    background-color: white;
+    border: 10px solid #DEDCD9;
+    padding-bottom: 20px;
+}
+.inputRecherche {
+    width: 100%;
+    padding: 8px 12px;
+	background: #FFFFFF;
+    border: none;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+footer {
+    margin-top: 70px;
+    background-color: #333;
+}
+.footer-copyright {
+    color: white;
+}
